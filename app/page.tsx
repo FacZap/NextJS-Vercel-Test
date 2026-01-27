@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BlogPost } from "@/types/blog-post";
+import { BlogPost } from "@/data/blog-posts";
 
 const getBlogPosts = async (): Promise<BlogPost[]> => {
   const response = await fetch("http://localhost:3000/api/v1/posts");
@@ -13,8 +13,10 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-zinc-50 font-sans gap-16 dark:bg-black">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold">Blog Posts</h1>
-        <p className="text-lg text-gray-600">Explore our latest blog posts</p>
+        <h1 className="text-4xl font-bold">Sensaciones Familiares</h1>
+        <p className="text-lg text-gray-400">
+          ¿De donde viene lo que escuchamos?
+        </p>
       </div>
       <div className="flex items-center justify-center gap-16">
         {blogPosts.map((post, index) => (

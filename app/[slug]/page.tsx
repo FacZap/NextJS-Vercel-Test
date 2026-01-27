@@ -1,4 +1,4 @@
-import { BlogPost } from "@/types/blog-post";
+import { BLOG_POSTS } from "@/data/blog-posts";
 
 async function getBlogPost(slug: string): Promise<BlogPost> {
   const response = await fetch(`http://localhost:3000/api/v1/posts/${slug}`);
