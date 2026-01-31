@@ -1,8 +1,12 @@
-import Image from "next/image";
 import { BlogPost } from "@/types/blog-post";
 
+export const dynamic = "force-dynamic";
+
 const getBlogPosts = async (): Promise<BlogPost[]> => {
-  const response = await fetch("http://localhost:3000/api/v1/posts");
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/v1/posts`);
   const data = await response.json();
   return data;
 };
