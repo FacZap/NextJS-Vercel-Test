@@ -3,8 +3,8 @@ import { BlogPost } from "@/types/blog-post";
 export const dynamic = "force-dynamic";
 
 const getBlogPosts = async (): Promise<BlogPost[]> => {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  const baseUrl = process.env.API_URL
+    ? `https://${process.env.API_URL}`
     : "http://localhost:3000";
   const response = await fetch(`${baseUrl}/api/v1/posts`);
   const data = await response.json();
