@@ -1,8 +1,12 @@
-import Image from "next/image";
 import { BlogPost } from "@/types/blog-post";
 
+export const dynamic = "force-dynamic";
+
 const getBlogPosts = async (): Promise<BlogPost[]> => {
-  const response = await fetch("http://localhost:3000/api/v1/posts");
+  const baseUrl = process.env.API_URL
+    ? `https://${process.env.API_URL}`
+    : "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/v1/posts`);
   const data = await response.json();
   return data;
 };
@@ -19,10 +23,10 @@ export default async function Home() {
       <div className="flex items-center justify-center gap-16">
         {blogPosts.map((post, index) => (
           <div key={index} className="border p-4 rounded-lg shadow-md max-w-sm">
-            <h1>{post.title}</h1>
+            <h1 className="text-xl font-bold">{post.title}</h1>
             <h2 style={{ color: "red" }}>{post.description}</h2>
             <p className="text-wrap">
-              {post.content.substring(0, 110) + "..."}
+              {post.content.substring(0, 150) + "..."}
             </p>
           </div>
         ))}
