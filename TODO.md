@@ -2,7 +2,7 @@
 [x] Agregar subtitulo a los blog posts
 [x] Renderizar primeros 50 caracteres del content en las cards seguido de  ...
 [x] Crear pagina de detalle de  un blog post con una ruta dinamica.
-[ ] Configurar el deployment en vercel
+[x] Configurar el deployment en vercel
       Vercel.com
       https://vercel.com/
       linkear github, repo publico
