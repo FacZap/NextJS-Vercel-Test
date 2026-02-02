@@ -11,10 +11,8 @@
   [] const blog post --> let blog post
       CRUD (patch en vez de update?)
   [] pagina de admin (back-office)
-      
-
-
 [] (para despues) cofigurar base de datos
-
 [] (para despues) authentication
     plugins lo hacen sencillo
+
+---test
