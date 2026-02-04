@@ -18,6 +18,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans gap-16 dark:bg-black">
       <h2>{blogPost.title}</h2>
       <pre>{JSON.stringify(blogPost, null, 2)}</pre>
+      <b>{blogPost.description}</b>
     </div>
   );
 }

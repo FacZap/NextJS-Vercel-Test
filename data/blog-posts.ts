@@ -1,6 +1,6 @@
 import { BlogPost } from "@/types/blog-post";
 
-export const BLOG_POSTS: BlogPost[] = [
+export let BLOG_POSTS: BlogPost[] = [
   {
     title: "Linkin Park",
     description: "Aguante chester",
