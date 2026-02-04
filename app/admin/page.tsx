@@ -25,7 +25,7 @@ export default function AdminPage() {
               Descripción
             </label>
             <textarea
-              rows="2"
+              rows={2}
               placeholder="Ingrese la descripción"
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
             />
@@ -37,7 +37,7 @@ export default function AdminPage() {
               Contenido
             </label>
             <textarea
-              rows="5"
+              rows={5}
               placeholder="Ingrese el contenido del post"
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
             />
