@@ -11,6 +11,26 @@ async function getBlogPost(slug: string): Promise<BlogPost> {
   return data;
 }
 
+/* export async function createBlogPost() {
+  const baseUrl = process.env.API_URL
+    ? `https://${process.env.API_URL}`
+    : "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/v1/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: "Nuevo Post",
+      description: "Descripción del nuevo post",
+      content: "Contenido del nuevo post",
+      slug: "nuevo-post",
+    }),
+  });
+  const data = await response.json();
+  return data;
+} */
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const blogPost: BlogPost = await getBlogPost(slug);
