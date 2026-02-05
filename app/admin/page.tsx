@@ -1,4 +1,32 @@
+"use client";
+
 export default function AdminPage() {
+  async function createBlogPost() {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL
+      ? `https://${process.env.NEXT_PUBLIC_API_URL}`
+      : "";
+
+    const response = await fetch(`${baseUrl}/api/v1/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Nuevo Post",
+        description: "Descripción del nuevo post",
+        content: "Contenido del nuevo post",
+        slug: "nuevo-post",
+      }),
+    });
+
+    const data = await response.json();
+    console.log("Respuesta del servidor:", data);
+  }
+
+  async function handleCreatePost() {
+    await createBlogPost();
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
@@ -6,7 +34,13 @@ export default function AdminPage() {
           Admin Page
         </h1>
 
-        <form className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCreatePost();
+          }}
+        >
           {/* Título */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -43,7 +77,7 @@ export default function AdminPage() {
             />
           </div>
 
-          {/* Contenido */}
+          {/* Slug */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Slug (opcional)
@@ -57,11 +91,10 @@ export default function AdminPage() {
 
           {/* Botón */}
           <button
-            type="button"
-            className="w-full bg-black text-white py-2 rounded-md font-semibold hover:bg-gray-800 transition"
-            //onClick={() => {}}
+            type="submit"
+            className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-900"
           >
-            Crear Post
+            Crear post
           </button>
         </form>
       </div>

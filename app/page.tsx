@@ -22,11 +22,11 @@ export default async function Home() {
       </div>
       <div className="flex items-center justify-center gap-16">
         {blogPosts.map((post, index) => (
-          <div key={index} className="border p-4 rounded-lg shadow-md max-w-sm">
+          <div key={index} className="border p-3 rounded-lg shadow-md max-w-sm">
             <h1 className="text-xl font-bold">{post.title}</h1>
             <h2 style={{ color: "red" }}>{post.description}</h2>
             <p className="text-wrap">
-              {post.content.substring(0, 150) + "..."}
+              {post.content.substring(0, 100) + "..."}
             </p>
           </div>
         ))}

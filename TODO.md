@@ -7,10 +7,11 @@
       https://vercel.com/
       linkear github, repo publico
       push --> deployment
-[] Estatica a dinamica
-  [] const blog post --> let blog post
+[x] Estatica a dinamica
+  [x] const blog post --> let blog post
       CRUD (patch en vez de update?)
-  [] pagina de admin (back-office)
+  [x] pagina de admin (back-office)
+  [] creacion de blogpost en base a los campos de la adminpage
 [] (para despues) cofigurar base de datos
 [] (para despues) authentication
     plugins lo hacen sencillo
