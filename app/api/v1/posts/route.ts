@@ -1,3 +1,5 @@
+// Diferencia entre NextRequest y Request???
+//import { NextRequest } from "next/server";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
 // FUNCION DE ESTO??
@@ -5,7 +7,7 @@ export async function GET(request: Request): Promise<Response> {
   return new Response(JSON.stringify(BLOG_POSTS));
 }
 
-export async function POST(request: NextRequest): Promise<Response> {
+export async function POST(request: Request): Promise<Response> {
   const data = await request.json();
   // Validar la data
   const { title, description, content } = data;
