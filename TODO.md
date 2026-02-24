@@ -11,7 +11,7 @@
   [x] const blog post --> let blog post
       CRUD (patch en vez de update?)
   [x] pagina de admin (back-office)
-  [] creacion de blogpost en base a los campos de la adminpage
+  [x] creacion de blogpost en base a los campos de la adminpage
 [] (para despues) cofigurar base de datos
 [] (para despues) authentication
     plugins lo hacen sencillo
