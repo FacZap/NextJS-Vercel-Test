@@ -12,10 +12,10 @@ export async function POST(request: Request): Promise<Response> {
   // Validar la data
   const { title, description, content } = data;
   let { slug } = data;
-  if (!title || !description || !content) {
+  if (!title.trim() || !description.trim() || !content.trim()) {
     return new Response("Invalid data", { status: 400 }); //Me lo generó la IA
   }
-  if (!slug) {
+  if (!slug.trim()) {
     slug = title.toLowerCase().replace(/\s+/g, "-");
   }
   // Crear el post
