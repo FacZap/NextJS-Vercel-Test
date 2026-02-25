@@ -41,7 +41,7 @@ export default function AdminPage() {
         </h1>
       </div>
 
-      {/* Panel */}
+      {/* Panel Crear Post*/}
       <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
         {/* Dropdown button */}
         <button
@@ -126,6 +126,38 @@ export default function AdminPage() {
               className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-900"
             >
               Crear post
+            </button>
+          </form>
+        )}
+      </div>
+
+      {/* Panel Borrar Post*/}
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
+        {/* Dropdown button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full flex justify-between items-center text-xl font-semibold text-gray-800 mb-4"
+        >
+          <span>Delete Post</span>
+          <span>{isOpen ? "▲" : "▼"}</span>
+        </button>
+
+        {/* Form collapsable */}
+        {isOpen && (
+          <form
+            className="space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleCreatePost();
+            }}
+          >
+            {/* Listado de Posts, que pueda ser seleccionable, con un "checkbox" */}
+
+            <button
+              type="submit"
+              className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-900"
+            >
+              Borrar Post
             </button>
           </form>
         )}
