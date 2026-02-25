@@ -2,12 +2,14 @@
 import { useState } from "react";
 
 export default function AdminPage() {
-  let [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     description: "",
     content: "",
     slug: "",
   });
+
+  const [isOpen, setIsOpen] = useState(false);
 
   async function createBlogPost() {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -19,12 +21,7 @@ export default function AdminPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: formData.title,
-        description: formData.description,
-        content: formData.content,
-        slug: formData.slug,
-      }),
+      body: JSON.stringify(formData),
     });
 
     const data = await response.json();
@@ -36,91 +33,102 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-3xl font-bold text-black mb-6 text-center">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-4xl font-bold text-black text-center">
           Admin Page
         </h1>
+      </div>
 
-        <form
-          className="space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleCreatePost();
-          }}
+      {/* Panel */}
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-6">
+        {/* Dropdown button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full flex justify-between items-center text-xl font-semibold text-gray-800 mb-4"
         >
-          {/* Título */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Título
-            </label>
-            <input
-              type="text"
-              placeholder="Ingrese el título"
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
-            />
-          </div>
+          <span>Create Post</span>
+          <span>{isOpen ? "▲" : "▼"}</span>
+        </button>
 
-          {/* Descripción */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Descripción
-            </label>
-            <textarea
-              rows={2}
-              placeholder="Ingrese la descripción"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
-            />
-          </div>
-
-          {/* Contenido */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Contenido
-            </label>
-            <textarea
-              rows={5}
-              placeholder="Ingrese el contenido del post"
-              value={formData.content}
-              onChange={(e) =>
-                setFormData({ ...formData, content: e.target.value })
-              }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
-            />
-          </div>
-
-          {/* Slug */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Slug (opcional)
-            </label>
-            <input
-              type="text"
-              placeholder="Ingrese el slug del post"
-              value={formData.slug}
-              onChange={(e) =>
-                setFormData({ ...formData, slug: e.target.value })
-              }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black text-black"
-            />
-          </div>
-
-          {/* Botón */}
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-900"
+        {/* Form collapsable */}
+        {isOpen && (
+          <form
+            className="space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleCreatePost();
+            }}
           >
-            Crear post
-          </button>
-        </form>
+            {/* Título */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Título
+              </label>
+              <input
+                type="text"
+                value={formData.title}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              />
+            </div>
+
+            {/* Descripción */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Descripción
+              </label>
+              <textarea
+                rows={2}
+                value={formData.description}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              />
+            </div>
+
+            {/* Contenido */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Contenido
+              </label>
+              <textarea
+                rows={5}
+                value={formData.content}
+                onChange={(e) =>
+                  setFormData({ ...formData, content: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              />
+            </div>
+
+            {/* Slug */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Slug (opcional)
+              </label>
+              <input
+                type="text"
+                value={formData.slug}
+                onChange={(e) =>
+                  setFormData({ ...formData, slug: e.target.value })
+                }
+                className="w-full border border-gray-300 rounded-md px-3 py-2"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-900"
+            >
+              Crear post
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
